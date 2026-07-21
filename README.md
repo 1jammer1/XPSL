@@ -7,7 +7,11 @@ Need to run a linux app while following your Windows workflow? Need to compile a
 
 credits to the peoples
 [qemu backported to xp](https://sourceforge.net/projects/xpitory/)
+
 [alpine](https://www.alpinelinux.org/)
+
 xorg by the people who defected to wayland 
+
 people who made virtio and vsock
+
 that one guy who made the linux
