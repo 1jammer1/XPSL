@@ -1,4 +1,4 @@
-img := alpine.img
+img := build/alpine.img
 size := 3G
 mount_shitt := /tmp/alpine_rootfs
 arch := x86
