@@ -1,0 +1,8 @@
+qemu for xp (remember to use only virtio for speed and use -machine accel=tcg,thread=multi something for sound idk too)
+some fucking script to download and install apk (the package manager for building the alpine img build side)
+winbtrfs (to extend and shrink disk)
+nsis (installer shit)
+you <333 (important)
+haxm driver fucking installer shit for xp (cant test, should be optional)
+probably a vnc viewer or ssh or serial device or fucking whatever bro maybe ill pipe it through virtio-vsock
+fucking soup
