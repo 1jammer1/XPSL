@@ -46,7 +46,7 @@ alpine-img: checkdeps
 	sudo mount $${loopdev}p1 $(mount_shitt)/boot; \
 	sudo mkdir -p $(mount_shitt)/etc/apk; \
 	echo "$(mirror)" | sudo tee $(mount_shitt)/etc/apk/repositories > /dev/null; \
-	sudo apk --arch $(arch) --root $(mount_shitt) --initdb add alpine-base linux-lts; \
+	sudo apk --arch $(arch) --root $(mount_shitt) --initdb --allow-untrusted add alpine-base linux-lts alpine-keys; \
 	sudo umount $(mount_shitt)/boot; \
 	sudo umount $(mount_shitt); \
 	sudo rm -rf $(mount_shitt); \
