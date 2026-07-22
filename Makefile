@@ -28,7 +28,7 @@ checkdeps:
 	@echo "we found the deps needed!!"
 
 alpine-img: checkdeps
-	qemu-img create -f raw $(img) $(size)
+	fallocate -l $(size) $(img)
 
 	parted -s $(img) mklabel gpt
 	parted -s $(img) mkpart primary fat32 1MiB 513MiB
@@ -39,7 +39,7 @@ alpine-img: checkdeps
 	loopdev=$$(sudo losetup --find --show -P $(img)); \
 	echo "loopdeved to $$loopdev"; \
 	sudo mkfs.vfat -F32 -n BOOT $${loopdev}p1; \
-	sudo mkfs.btrfs -f -L ROOT $${loopdev}p2; \
+	sudo mkfs.btrfs -f --nodiscard -L ROOT $${loopdev}p2; \
 	sudo mkdir -p $(mount_shitt); \
 	sudo mount $${loopdev}p2 $(mount_shitt); \
 	sudo mkdir -p $(mount_shitt)/boot; \
@@ -47,8 +47,8 @@ alpine-img: checkdeps
 	sudo mkdir -p $(mount_shitt)/etc/apk; \
 	echo "$(mirror)" | sudo tee $(mount_shitt)/etc/apk/repositories > /dev/null; \
 	sudo apk --arch $(arch) --root $(mount_shitt) --initdb --allow-untrusted add alpine-base linux-lts alpine-keys; \
-	sudo umount $(mount_shitt)/boot; \
-	sudo umount $(mount_shitt); \
+	sudo umount -l $(mount_shitt)/boot; \
+	sudo umount -l $(mount_shitt); \
 	sudo rm -rf $(mount_shitt); \
 
 	sudo losetup -d $$loopdev
